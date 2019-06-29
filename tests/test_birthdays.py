@@ -10,9 +10,10 @@ import pytest
 from sopel_modules.birthdays import birthdays
 
 
-class TestBirthdays(unittest.TestCase):
-    def setUp(self):
-        pass
+def test_get_names():
+    j = {'data': {'Births': [{'text': 'person1'}]}}
+    expected = ['person1']
 
-    def testSomething(self):
-        pass
+    names = birthdays.get_names(j)
+
+    assert expected == names

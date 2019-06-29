@@ -4,6 +4,7 @@ from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 
 from sopel import module
+import requests
 
 
 def configure(config):
@@ -14,6 +15,11 @@ def setup(bot):
     pass
 
 
-@module.commands('helloworld')
-def hello_world(bot, trigger):
-    bot.say('Hello, world!')
+def get_names(j):
+    return [i['text'] for i in j['data']['Births']]
+
+
+@module.commands('bdays')
+def bdays(bot, trigger):
+    r = requests.get('https://history.muffinlabs.com/date')
+    rj = r.json()
