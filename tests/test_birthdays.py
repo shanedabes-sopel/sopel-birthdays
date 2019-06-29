@@ -11,7 +11,7 @@ from sopel_modules.birthdays import birthdays
 
 
 def test_get_names():
-    j = {'data': {'Births': [{'text': 'person1'}]}}
+    j = {'data': {'Births': [{'text': 'person1, description'}]}}
     expected = ['person1']
 
     names = birthdays.get_names(j)

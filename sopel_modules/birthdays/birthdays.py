@@ -22,7 +22,7 @@ def setup(bot):
 
 def get_names(j):
     """ Get names from json response """
-    return [i['text'] for i in j['data']['Births']]
+    return [i['text'].split(',')[0] for i in j['data']['Births']]
 
 
 def apply_colours(days, colours):
