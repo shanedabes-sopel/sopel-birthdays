@@ -23,3 +23,10 @@ def test_apply_colours():
     cdays = birthdays.apply_colours(['abc', 'def', 'ghi'], [1, 2])
 
     assert cdays == ['\x0301abc\x03', '\x0302def\x03', '\x0301ghi\x03']
+
+
+def test_split_messages():
+    days = ['test 1', 'test 2'] * 26
+    output_lines = birthdays.split_msg(days)
+
+    assert output_lines[-1] == 'test 1, test 2'

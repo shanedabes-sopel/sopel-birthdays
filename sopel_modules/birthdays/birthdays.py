@@ -4,6 +4,8 @@ from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 
 import itertools
+import random
+import textwrap
 
 import sopel.module
 import sopel.formatting
@@ -31,11 +33,21 @@ def apply_colours(days, colours):
     return cdays
 
 
+def split_msg(days):
+    msg = ', '.join(i.replace(' ', '\x1f') for i in days)
+    lines = [i.replace('\x1f', ' ') for i in textwrap.wrap(msg, 400)]
+
+    return lines
+
+
 @sopel.module.commands('bdays')
 def bdays(bot, trigger):
     r = requests.get('https://history.muffinlabs.com/date')
     rj = r.json()
 
     names = get_names(rj)
+    colours = random.sample(['01', '02', '03', '04', '06', '08', '11'], 7)
+    cnames = apply_colours(names, colours)
 
-    bot.say(', '.join(names))
+    for msg in split_msg(cnames):
+        bot.say('{}'.format(msg))
