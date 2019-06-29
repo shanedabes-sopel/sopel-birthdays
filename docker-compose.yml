@@ -10,7 +10,7 @@ services:
     container_name: sopel
     volumes:
       - ./docker_test_config/sopel.cfg:/home/sopel/.sopel/default.cfg
-      - ./sopel_modules/checkiday/checkiday.py:/home/sopel/.sopel/modules/checkiday.py
+      - ./sopel_modules/birthdays/birthdays.py:/home/sopel/.sopel/modules/birthdays.py
     depends_on:
       - ircd
 
