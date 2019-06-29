@@ -17,3 +17,9 @@ def test_get_names():
     names = birthdays.get_names(j)
 
     assert expected == names
+
+
+def test_apply_colours():
+    cdays = birthdays.apply_colours(['abc', 'def', 'ghi'], [1, 2])
+
+    assert cdays == ['\x0301abc\x03', '\x0302def\x03', '\x0301ghi\x03']
