@@ -20,9 +20,14 @@ def setup(bot):
     pass
 
 
-def get_names(j):
+def get_births(j):
     """ Get names from json response """
     return [i['text'].split(',')[0] for i in j['data']['Births']]
+
+
+def get_deaths(j):
+    """ Get names from json response """
+    return [i['text'].split(',')[0] for i in j['data']['Deaths']]
 
 
 def apply_colours(days, colours):
@@ -41,11 +46,16 @@ def split_msg(days):
 
 
 @sopel.module.commands('bdays')
+@sopel.module.commands('ddays')
 def bdays(bot, trigger):
     r = requests.get('https://history.muffinlabs.com/date')
     rj = r.json()
 
-    names = get_names(rj)
+    if trigger.args[1] == '.bdays':
+        names = get_births(rj)
+    elif trigger.args[1] == '.ddays':
+        names = get_deaths(rj)
+
     colours = random.sample(['01', '02', '03', '04', '06', '08', '11'], 7)
     cnames = apply_colours(names, colours)
 
