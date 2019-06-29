@@ -11,12 +11,19 @@ from sopel_modules.birthdays import birthdays
 
 
 def test_get_names():
-    j = {'data': {'Births': [{'text': 'person1'}]}}
-    expected = ['person1']
+    j = {
+        'data': {
+            'Births': [
+                {'text': 'person1, description'}
+            ],
+            'Deaths': [
+                {'text': 'person2, description'}
+            ]
+        }
+    }
 
-    names = birthdays.get_names(j)
-
-    assert expected == names
+    assert birthdays.get_births(j) == ['person1']
+    assert birthdays.get_deaths(j) == ['person2']
 
 
 def test_apply_colours():
