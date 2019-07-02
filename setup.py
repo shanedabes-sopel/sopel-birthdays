@@ -27,7 +27,7 @@ with open('dev-requirements.txt') as dev_requirements_file:
 
 setup(
     name='sopel_modules.birthdays',
-    version='0.1.0',
+    version='0.1.1',
     description='Print birthdays of notable people using wikipedia data',
     long_description=readme + '\n\n' + history,
     author='Shane Donohoe',
