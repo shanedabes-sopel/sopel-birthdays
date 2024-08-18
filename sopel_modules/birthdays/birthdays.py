@@ -7,7 +7,7 @@ import itertools
 import random
 import textwrap
 
-import sopel.module
+import sopel.plugin
 import sopel.formatting
 import requests
 
@@ -45,8 +45,7 @@ def split_msg(days):
     return lines
 
 
-@sopel.module.commands('bdays')
-@sopel.module.commands('ddays')
+@sopel.plugin.commands('bdays', 'ddays')
 def bdays(bot, trigger):
     r = requests.get('https://history.muffinlabs.com/date')
     rj = r.json()
