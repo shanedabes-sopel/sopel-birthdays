@@ -50,9 +50,9 @@ def bdays(bot, trigger):
     r = requests.get('https://history.muffinlabs.com/date')
     rj = r.json()
 
-    if trigger.args[1] == '.bdays':
+    if trigger.group(1) == 'bdays':
         names = get_births(rj)
-    elif trigger.args[1] == '.ddays':
+    elif trigger.group(1) == 'ddays':
         names = get_deaths(rj)
 
     colours = random.sample(['01', '02', '03', '04', '06', '08', '11'], 7)
